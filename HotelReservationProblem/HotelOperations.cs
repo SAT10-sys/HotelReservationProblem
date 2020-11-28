@@ -9,24 +9,43 @@ namespace HotelReservationProblem
     {
         public string REGEX_REGULAR = "^[Rr][Ee][Gg][Uu][Ll][Aa][Rr]$";
         public string REGEX_REWARD = "^[Rr][Ee][Ww][Aa][Rr][Dd]$";
-        /*public void FindCheapestHotel(string checkInDate, string checkOutDate)
+        public void DisplayListOfHotels(CustomerType customerType)
         {
-             this method finds out the cheapest hotel
-             * checkin and checkout dates are passed as parameters
+            /** this method helps us display list of hotels along with details
+             * customer type is passed as parameters
+             * objects of enum are created which are passed along with customertype to the invoked constructor of HotelData class
+             */
+            Console.WriteLine("\n");
+            Console.WriteLine("Displaying for {0} Customer type",customerType);
+            Console.WriteLine("HOTEL NAME\tRATING\tWEEKDAY RATES\tWEEKEND RATES");
+            HotelName hotelName = HotelName.LAKEWOOD;
+            HotelData lakeWood = new HotelData(hotelName, customerType);
+            Console.WriteLine(hotelName+"\t"+lakeWood.ratingOfHotel+"\t\t"+lakeWood.weekDayRateOfHotel+"\t\t"+lakeWood.weekEndRateOfHotel);
+            hotelName = HotelName.BRIDGEWOOD;
+            HotelData bridgeWood = new HotelData(hotelName, customerType);
+            Console.WriteLine(hotelName+"\t"+bridgeWood.ratingOfHotel+"\t\t"+bridgeWood.weekDayRateOfHotel+"\t\t"+bridgeWood.weekEndRateOfHotel);
+            hotelName = HotelName.RIDGEWOOD;
+            HotelData ridgeWood = new HotelData(hotelName, customerType);
+            Console.WriteLine(hotelName+"\t"+ridgeWood.ratingOfHotel+"\t\t"+ridgeWood.weekDayRateOfHotel+"\t\t"+ridgeWood.weekEndRateOfHotel);
+        }
+        public void FindCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
+        {
+             /*this method finds out the cheapest hotel
+             * checkin and checkout dates along with customer type are passed as parameters
              * objects of enum HotelName are created which are passed as parameters to the method finding hotel cost
              * finally they are compared
-             
+             */
             HotelName hotelName1;
             HotelName hotelName2;
             HotelName hotelName3;
             HotelName hotelName = HotelName.LAKEWOOD;
-            HotelData lakeWood = new HotelData(hotelName);
+            HotelData lakeWood = new HotelData(hotelName, customerType);
             double rateOfLakeWood = lakeWood.CostOfHotel(checkInDate, checkOutDate);
             hotelName = HotelName.BRIDGEWOOD;
-            HotelData bridgeWood = new HotelData(hotelName);
+            HotelData bridgeWood = new HotelData(hotelName, customerType);
             double rateOfBridgeWood = bridgeWood.CostOfHotel(checkInDate, checkOutDate);
             hotelName = HotelName.RIDGEWOOD;
-            HotelData ridgeWood = new HotelData(hotelName);
+            HotelData ridgeWood = new HotelData(hotelName, customerType);
             double rateOfRidgeWood = ridgeWood.CostOfHotel(checkInDate, checkOutDate);
             if(rateOfLakeWood<rateOfBridgeWood && rateOfLakeWood<rateOfRidgeWood)
             {
@@ -83,16 +102,19 @@ namespace HotelReservationProblem
                 Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood + "\t" + rateOfBridgeWood+"\t"+rateOfRidgeWood);
             }
         }
-        public void BestRatedHotel(string checkInDate, string checkOutDate)
+        public void BestRatedHotel(string checkInDate, string checkOutDate, CustomerType customerType)
         {
+            /** this method helps us find the best rated hotel
+             * checkin and checkout dates along with customer types are passed as parameters     
+             * */
             HotelName hotelName = HotelName.LAKEWOOD;
-            HotelData lakeWood = new HotelData(hotelName);
+            HotelData lakeWood = new HotelData(hotelName,customerType);
             double rateOfLakeWood = lakeWood.CostOfHotel(checkInDate, checkOutDate);
             hotelName = HotelName.BRIDGEWOOD;
-            HotelData bridgeWood = new HotelData(hotelName);
+            HotelData bridgeWood = new HotelData(hotelName, customerType);
             double rateOfBridgeWood = bridgeWood.CostOfHotel(checkInDate, checkOutDate);
             hotelName = HotelName.RIDGEWOOD;
-            HotelData ridgeWood = new HotelData(hotelName);
+            HotelData ridgeWood = new HotelData(hotelName, customerType);
             double rateOfRidgeWood = ridgeWood.CostOfHotel(checkInDate, checkOutDate);
             if(lakeWood.ratingOfHotel>bridgeWood.ratingOfHotel && lakeWood.ratingOfHotel>ridgeWood.ratingOfHotel)
             {
@@ -115,9 +137,14 @@ namespace HotelReservationProblem
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total Cost: " + rateOfRidgeWood);
             }
-        }*/
+        }
         public void BestRatedCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
         {
+            /* this method finds best rated cheapest hotels
+             * check-in and check-out dates along with customer types are passed as parameters
+             * first the cheapest hotels are found 
+             * then details of the hotel having highest rating is printed
+             */
             HotelName hotelName = HotelName.LAKEWOOD;
             HotelData lakeWood = new HotelData(hotelName, customerType);
             double rateOfLakeWood = lakeWood.CostOfHotel(checkInDate, checkOutDate);
@@ -179,6 +206,10 @@ namespace HotelReservationProblem
         }
         public CustomerType ValidateUsingRegularExpressions(string customerType)
         {
+            /* passing customertype as string type variable as parameter
+             * validated with the pre-defined Regular Expressions
+             * if not matched then Invalid Customer Type Exception is thrown
+             */
             if (Regex.IsMatch(customerType, REGEX_REGULAR))
                 return CustomerType.REGULAR;
             else if (Regex.IsMatch(customerType, REGEX_REWARD))
