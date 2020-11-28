@@ -15,8 +15,11 @@ namespace HotelReservationProblem
                 HotelOperations hotelOperations = new HotelOperations();
                 //hotelOperations.FindCheapestHotel(checkInDate, checkOutDate);
                 //hotelOperations.BestRatedHotel(checkInDate, checkOutDate);
-                Console.WriteLine("Cheapest best rated hotel for REWARD type customers");
-                hotelOperations.BestRatedCheapestHotel(checkInDate, checkOutDate, CustomerType.REWARD);
+                Console.WriteLine("Enter Customer Type: (Regular or Reward)");
+                string customer = Console.ReadLine();
+                CustomerType customerType = hotelOperations.ValidateUsingRegularExpressions(customer);
+                Console.WriteLine("Finding for {0} Customer Type",customerType);
+                hotelOperations.BestRatedCheapestHotel(checkInDate, checkOutDate, customerType);
             }
             catch (HotelReservationException e)
             {
