@@ -15,7 +15,8 @@ namespace HotelReservationProblem
                 HotelOperations hotelOperations = new HotelOperations();
                 //hotelOperations.FindCheapestHotel(checkInDate, checkOutDate);
                 //hotelOperations.BestRatedHotel(checkInDate, checkOutDate);
-                //hotelOperations.BestRatedCheapestHotel(checkInDate, checkOutDate);
+                Console.WriteLine("Cheapest best rated hotel for REWARD type customers");
+                hotelOperations.BestRatedCheapestHotel(checkInDate, checkOutDate, CustomerType.REWARD);
             }
             catch (HotelReservationException e)
             {
