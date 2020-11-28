@@ -9,7 +9,7 @@ namespace HotelReservationProblem
         // storing different types of expected exception in the enum
         public enum ExceptionType
         {
-            INVALID_CUSTOMER_NAME,
+            INVALID_HOTEL_NAME,
             INVALID_CUSTOMER_TYPE,
             INVALID_DATES
         }
