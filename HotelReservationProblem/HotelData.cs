@@ -49,9 +49,9 @@ namespace HotelReservationProblem
                     try
                     {
                         if (customerType.Equals(CustomerType.REGULAR))
-                        { this.weekDayRateOfHotel = 150; this.weekEndRateOfHotel = 50; }
+                        { this.weekDayRateOfHotel = 160; this.weekEndRateOfHotel = 50; }
                         if (customerType.Equals(CustomerType.REWARD))
-                        { this.weekDayRateOfHotel = 110; this.weekEndRateOfHotel = 50; }
+                        { this.weekDayRateOfHotel = 100; this.weekEndRateOfHotel = 50; }
                     }
                     catch (HotelReservationException)
                     {

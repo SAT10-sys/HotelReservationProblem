@@ -28,16 +28,17 @@ namespace HotelReservationProblem
             HotelData ridgeWood = new HotelData(hotelName, customerType);
             Console.WriteLine(hotelName+"\t"+ridgeWood.ratingOfHotel+"\t\t"+ridgeWood.weekDayRateOfHotel+"\t\t"+ridgeWood.weekEndRateOfHotel);
         }
-        public void FindCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
+        public HotelName FindCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
         {
-             /*this method finds out the cheapest hotel
-             * checkin and checkout dates along with customer type are passed as parameters
-             * objects of enum HotelName are created which are passed as parameters to the method finding hotel cost
-             * finally they are compared
-             */
+            /*this method finds out the cheapest hotel
+            * checkin and checkout dates along with customer type are passed as parameters
+            * objects of enum HotelName are created which are passed as parameters to the method finding hotel cost
+            * finally they are compared
+            */      
             HotelName hotelName1;
             HotelName hotelName2;
             HotelName hotelName3;
+            int i=0, j=0, k=0;
             HotelName hotelName = HotelName.LAKEWOOD;
             HotelData lakeWood = new HotelData(hotelName, customerType);
             double rateOfLakeWood = lakeWood.CostOfHotel(checkInDate, checkOutDate);
@@ -53,6 +54,7 @@ namespace HotelReservationProblem
                 Console.WriteLine("Cheapest Hotel for the entered date range: "+hotelName);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: "+rateOfLakeWood);
+                i++;
             }
             if(rateOfBridgeWood<rateOfLakeWood && rateOfBridgeWood<rateOfRidgeWood)
             {
@@ -60,13 +62,14 @@ namespace HotelReservationProblem
                 Console.WriteLine("Cheapest Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + bridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfBridgeWood);
-            }
+                i++;            }
             if(rateOfRidgeWood<rateOfLakeWood && rateOfRidgeWood<rateOfBridgeWood)
             {
                 hotelName = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
+                i++;
             }
             if(rateOfLakeWood==rateOfBridgeWood && rateOfLakeWood<rateOfRidgeWood)
             {
@@ -75,6 +78,7 @@ namespace HotelReservationProblem
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1+"\t"+hotelName2);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel+"\t"+bridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood+"\t"+rateOfBridgeWood);
+                j++;
             }
             if(rateOfLakeWood==rateOfRidgeWood && rateOfLakeWood<rateOfBridgeWood)
             {
@@ -83,6 +87,7 @@ namespace HotelReservationProblem
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1 + "\t" + hotelName2);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel+"\t"+ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood + "\t" + rateOfRidgeWood);
+                j++;
             }
             if(rateOfBridgeWood==rateOfRidgeWood && rateOfBridgeWood<rateOfLakeWood)
             {
@@ -91,6 +96,7 @@ namespace HotelReservationProblem
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1 + "\t" + hotelName2);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel+"\t"+bridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood + "\t" + rateOfBridgeWood);
+                j++;
             }
             if(rateOfLakeWood==rateOfBridgeWood && rateOfLakeWood==rateOfRidgeWood)
             {
@@ -100,9 +106,11 @@ namespace HotelReservationProblem
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1 + "\t" + hotelName2+"\t"+hotelName3);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel+"\t"+bridgeWood.ratingOfHotel+"\t"+ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood + "\t" + rateOfBridgeWood+"\t"+rateOfRidgeWood);
+                k++;
             }
+            return hotelName;
         }
-        public void BestRatedHotel(string checkInDate, string checkOutDate, CustomerType customerType)
+        public HotelName BestRatedHotel(string checkInDate, string checkOutDate, CustomerType customerType)
         {
             /** this method helps us find the best rated hotel
              * checkin and checkout dates along with customer types are passed as parameters     
@@ -137,8 +145,9 @@ namespace HotelReservationProblem
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total Cost: " + rateOfRidgeWood);
             }
+            return hotelName;
         }
-        public void BestRatedCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
+        public HotelName BestRatedCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
         {
             /* this method finds best rated cheapest hotels
              * check-in and check-out dates along with customer types are passed as parameters
@@ -203,6 +212,7 @@ namespace HotelReservationProblem
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
             }
+            return hotelName;
         }
         public CustomerType ValidateUsingRegularExpressions(string customerType)
         {
