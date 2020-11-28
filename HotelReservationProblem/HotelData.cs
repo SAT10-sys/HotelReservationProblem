@@ -38,16 +38,18 @@ namespace HotelReservationProblem
             {
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_HOTEL_NAME, "Invalid Name of Hotel");
             }
-        }
-        /*
+        }        
         public double CostOfHotel(string startDate, string endDate)
         {
             /** this method finds the total cost of the hotel
              * Start and end dates are passed as parameters
              * calculations based on regular rates for number of days stayed
+             * weekday and weekend rates are considered seperately
              * returns the total cost
-             * 
-            double costOfHotel = 0;
+             */
+            double totalcostOfHotel;
+            double totalWeekDayCost = 0; //total cost for weekdays only
+            double totalweekEndCost = 0; // total cost for weekends only
             try
             {
                 CultureInfo cultureInfo = CultureInfo.InvariantCulture;
@@ -57,15 +59,19 @@ namespace HotelReservationProblem
                     Console.WriteLine("Invalid Dates entered");
                 while(checkInDate<=checkOutDate)
                 {
-                    costOfHotel = costOfHotel + rateOfHotel;
+                    if (checkInDate.DayOfWeek == DayOfWeek.Saturday || checkInDate.DayOfWeek == DayOfWeek.Sunday) //checking for weekends
+                        totalweekEndCost = totalweekEndCost + weekEndRateOfHotel; 
+                    else
+                        totalWeekDayCost = totalWeekDayCost + weekDayRateOfHotel;
                     checkInDate=checkInDate.AddDays(1);
                 }
+                totalcostOfHotel = totalWeekDayCost + totalweekEndCost; //total cost is summation of total weekday and weekend costs
             }           
             catch(Exception)
             {
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_DATES, "Invalid Dates entered");
             }
-            return costOfHotel;
-        }*/
+            return totalcostOfHotel;
+        }
     }
 }
