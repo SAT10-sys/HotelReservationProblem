@@ -76,6 +76,6 @@ namespace HotelReservationProblem
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_DATES, "Invalid Dates entered");
             }
             return totalcostOfHotel;
-        }
+        }            
     }
 }

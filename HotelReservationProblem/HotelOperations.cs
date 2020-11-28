@@ -73,5 +73,35 @@ namespace HotelReservationProblem
                 Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood + "\t" + rateOfBridgeWood+"\t"+rateOfRidgeWood);
             }
         }
+        public void BestRatedHotel(string checkInDate, string checkOutDate)
+        {
+            HotelName hotelName = HotelName.LAKEWOOD;
+            HotelData lakeWood = new HotelData(hotelName);
+            double rateOfLakeWood = lakeWood.CostOfHotel(checkInDate, checkOutDate);
+            hotelName = HotelName.BRIDGEWOOD;
+            HotelData bridgeWood = new HotelData(hotelName);
+            double rateOfBridgeWood = bridgeWood.CostOfHotel(checkInDate, checkOutDate);
+            hotelName = HotelName.RIDGEWOOD;
+            HotelData ridgeWood = new HotelData(hotelName);
+            double rateOfRidgeWood = ridgeWood.CostOfHotel(checkInDate, checkOutDate);
+            if(lakeWood.ratingOfHotel>bridgeWood.ratingOfHotel && lakeWood.ratingOfHotel>ridgeWood.ratingOfHotel)
+            {
+                hotelName = HotelName.LAKEWOOD;
+                Console.WriteLine("Best rated hotel is: "+hotelName);
+                Console.WriteLine("Total Cost: "+rateOfLakeWood);
+            }
+            if (bridgeWood.ratingOfHotel > lakeWood.ratingOfHotel && bridgeWood.ratingOfHotel > ridgeWood.ratingOfHotel)
+            {
+                hotelName = HotelName.BRIDGEWOOD;
+                Console.WriteLine("Best rated hotel is: " + hotelName);
+                Console.WriteLine("Total Cost: " + rateOfBridgeWood);
+            }
+            if (ridgeWood.ratingOfHotel > bridgeWood.ratingOfHotel && ridgeWood.ratingOfHotel > bridgeWood.ratingOfHotel)
+            {
+                hotelName = HotelName.RIDGEWOOD;
+                Console.WriteLine("Best rated hotel is: " + hotelName);
+                Console.WriteLine("Total Cost: " + rateOfRidgeWood);
+            }
+        }
     }
 }
