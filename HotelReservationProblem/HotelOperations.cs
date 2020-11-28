@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HotelReservationProblem
 {
     public class HotelOperations
     {
+        public string REGEX_REGULAR = "^[Rr][Ee][Gg][Uu][Ll][Aa][Rr]$";
+        public string REGEX_REWARD = "^[Rr][Ee][Ww][Aa][Rr][Dd]$";
         /*public void FindCheapestHotel(string checkInDate, string checkOutDate)
         {
              this method finds out the cheapest hotel
@@ -173,6 +176,15 @@ namespace HotelReservationProblem
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
             }
+        }
+        public CustomerType ValidateUsingRegularExpressions(string customerType)
+        {
+            if (Regex.IsMatch(customerType, REGEX_REGULAR))
+                return CustomerType.REGULAR;
+            else if (Regex.IsMatch(customerType, REGEX_REWARD))
+                return CustomerType.REWARD;
+            else
+                throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_CUSTOMER_TYPE, "Invalid Customer Type");
         }
     }
 }
