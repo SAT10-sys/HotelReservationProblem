@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace HotelReservationProblem
 {
@@ -27,6 +28,33 @@ namespace HotelReservationProblem
             {
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_HOTEL_NAME, "Invalid Name of Hotel");
             }
+        }
+        public double CostOfHotel(string startDate, string endDate)
+        {
+            /** this method finds the total cost of the hotel
+             * Start and end dates are passed as parameters
+             * calculations based on regular rates for number of days stayed
+             * returns the total cost
+             * */
+            double costOfHotel = 0;
+            try
+            {
+                CultureInfo cultureInfo = CultureInfo.InvariantCulture;
+                DateTime checkInDate = Convert.ToDateTime(startDate);
+                DateTime checkOutDate = Convert.ToDateTime(endDate);
+                if (checkInDate > checkOutDate)
+                    Console.WriteLine("Invalid Dates entered");
+                while(checkInDate<=checkOutDate)
+                {
+                    costOfHotel = costOfHotel + rateOfHotel;
+                    checkInDate=checkInDate.AddDays(1);
+                }
+            }
+            catch(HotelReservationException)
+            {
+                throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_DATES, "Invalid Dates entered");
+            }
+            return costOfHotel;
         }
     }
 }
