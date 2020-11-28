@@ -8,7 +8,8 @@ namespace HotelReservationProblem
     public class HotelData
     {
         HotelName nameOfHotel; //name of Hotel 
-        public double rateOfHotel; // rate of hotel
+        public double weekDayRateOfHotel; // weekday rate of hotel
+        public double weekEndRateOfHotel; // weekend rate of hotel
         public HotelData(HotelName nameOfHotel)
         {
             /* parameterized constructor
@@ -18,24 +19,34 @@ namespace HotelReservationProblem
             try
             {
                 if (nameOfHotel.Equals(HotelName.LAKEWOOD))
-                    this.rateOfHotel = 110;
+                {
+                    this.weekDayRateOfHotel = 110;
+                    this.weekEndRateOfHotel = 90;
+                }
                 if (nameOfHotel.Equals(HotelName.BRIDGEWOOD))
-                    this.rateOfHotel = 150;
+                {
+                    this.weekDayRateOfHotel = 150;
+                    this.weekEndRateOfHotel = 50;
+                }
                 if (nameOfHotel.Equals(HotelName.RIDGEWOOD))
-                    this.rateOfHotel = 220;
+                {
+                    this.weekDayRateOfHotel = 220;
+                    this.weekEndRateOfHotel = 150;
+                }
             }
             catch(HotelReservationException)
             {
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_HOTEL_NAME, "Invalid Name of Hotel");
             }
         }
+        /*
         public double CostOfHotel(string startDate, string endDate)
         {
             /** this method finds the total cost of the hotel
              * Start and end dates are passed as parameters
              * calculations based on regular rates for number of days stayed
              * returns the total cost
-             * */
+             * 
             double costOfHotel = 0;
             try
             {
@@ -55,6 +66,6 @@ namespace HotelReservationProblem
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_DATES, "Invalid Dates entered");
             }
             return costOfHotel;
-        }
+        }*/
     }
 }
