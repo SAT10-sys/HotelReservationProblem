@@ -50,7 +50,7 @@ namespace HotelReservationProblem
                     checkInDate=checkInDate.AddDays(1);
                 }
             }           
-            catch(HotelReservationException)
+            catch(Exception)
             {
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_DATES, "Invalid Dates entered");
             }
