@@ -18,7 +18,7 @@ namespace HotelReservationProblem
                 CustomerType customerType = hotelOperations.ValidateUsingRegularExpressions(customer);
                 Regstart:
                 Console.WriteLine("Enter the following choices between 1 and ");
-                Console.WriteLine("1.DISPLAY HOTELS WITH THEIR RESPECTIVE RATINGS AND RATES\n2.FIND BEST RATED HOTEL\n3.FIND CHEAPEST HOTEL\n.FIND BEST RATED CHEAPEST HOTEL");
+                Console.WriteLine("1.DISPLAY HOTELS WITH THEIR RESPECTIVE RATINGS AND RATES\n2.FIND BEST RATED HOTEL\n3.FIND CHEAPEST HOTEL\n4.FIND BEST RATED CHEAPEST HOTEL");
                 Console.WriteLine("BASED ON THE DATES ENTERED BY YOU AND TYPE OF CUSTOMER");
                 int choiceOfOperation = Convert.ToInt32(Console.ReadLine());
                 switch(choiceOfOperation)

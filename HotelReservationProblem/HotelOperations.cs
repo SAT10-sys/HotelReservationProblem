@@ -20,15 +20,15 @@ namespace HotelReservationProblem
             Console.WriteLine("HOTEL NAME\tRATING\tWEEKDAY RATES\tWEEKEND RATES");
             HotelName hotelName = HotelName.LAKEWOOD;
             HotelData lakeWood = new HotelData(hotelName, customerType);
-            Console.WriteLine(hotelName+"\t"+lakeWood.ratingOfHotel+"\t\t"+lakeWood.weekDayRateOfHotel+"\t\t"+lakeWood.weekEndRateOfHotel);
+            Console.WriteLine(hotelName+"\t"+lakeWood.ratingOfHotel+"\t\t$"+lakeWood.weekDayRateOfHotel+"\t\t$"+lakeWood.weekEndRateOfHotel);
             hotelName = HotelName.BRIDGEWOOD;
             HotelData bridgeWood = new HotelData(hotelName, customerType);
-            Console.WriteLine(hotelName+"\t"+bridgeWood.ratingOfHotel+"\t\t"+bridgeWood.weekDayRateOfHotel+"\t\t"+bridgeWood.weekEndRateOfHotel);
+            Console.WriteLine(hotelName+"\t"+bridgeWood.ratingOfHotel+"\t\t$"+bridgeWood.weekDayRateOfHotel+"\t\t$"+bridgeWood.weekEndRateOfHotel);
             hotelName = HotelName.RIDGEWOOD;
             HotelData ridgeWood = new HotelData(hotelName, customerType);
-            Console.WriteLine(hotelName+"\t"+ridgeWood.ratingOfHotel+"\t\t"+ridgeWood.weekDayRateOfHotel+"\t\t"+ridgeWood.weekEndRateOfHotel);
+            Console.WriteLine(hotelName+"\t"+ridgeWood.ratingOfHotel+"\t\t$"+ridgeWood.weekDayRateOfHotel+"\t\t$"+ridgeWood.weekEndRateOfHotel);
         }
-        public HotelName FindCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
+        public int FindCheapestHotel(string checkInDate, string checkOutDate, CustomerType customerType)
         {
             /*this method finds out the cheapest hotel
             * checkin and checkout dates along with customer type are passed as parameters
@@ -38,7 +38,7 @@ namespace HotelReservationProblem
             HotelName hotelName1;
             HotelName hotelName2;
             HotelName hotelName3;
-            int i=0, j=0, k=0;
+            int i = 0;
             HotelName hotelName = HotelName.LAKEWOOD;
             HotelData lakeWood = new HotelData(hotelName, customerType);
             double rateOfLakeWood = lakeWood.CostOfHotel(checkInDate, checkOutDate);
@@ -53,7 +53,7 @@ namespace HotelReservationProblem
                 hotelName = HotelName.LAKEWOOD;
                 Console.WriteLine("Cheapest Hotel for the entered date range: "+hotelName);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: "+rateOfLakeWood);
+                Console.WriteLine("Total cost for the given date range: $"+rateOfLakeWood);
                 i++;
             }
             if(rateOfBridgeWood<rateOfLakeWood && rateOfBridgeWood<rateOfRidgeWood)
@@ -61,14 +61,14 @@ namespace HotelReservationProblem
                 hotelName = HotelName.BRIDGEWOOD;
                 Console.WriteLine("Cheapest Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + bridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfBridgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfBridgeWood);
                 i++;            }
             if(rateOfRidgeWood<rateOfLakeWood && rateOfRidgeWood<rateOfBridgeWood)
             {
                 hotelName = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfRidgeWood);
                 i++;
             }
             if(rateOfLakeWood==rateOfBridgeWood && rateOfLakeWood<rateOfRidgeWood)
@@ -77,8 +77,8 @@ namespace HotelReservationProblem
                 hotelName2 = HotelName.BRIDGEWOOD;
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1+"\t"+hotelName2);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel+"\t"+bridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood+"\t"+rateOfBridgeWood);
-                j++;
+                Console.WriteLine("Total cost for the given date range: $" + rateOfLakeWood+"\t$"+rateOfBridgeWood);
+                i+=2;
             }
             if(rateOfLakeWood==rateOfRidgeWood && rateOfLakeWood<rateOfBridgeWood)
             {
@@ -86,8 +86,8 @@ namespace HotelReservationProblem
                 hotelName2 = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1 + "\t" + hotelName2);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel+"\t"+ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood + "\t" + rateOfRidgeWood);
-                j++;
+                Console.WriteLine("Total cost for the given date range: $" + rateOfLakeWood + "\t$" + rateOfRidgeWood);
+                i+=2;
             }
             if(rateOfBridgeWood==rateOfRidgeWood && rateOfBridgeWood<rateOfLakeWood)
             {
@@ -95,8 +95,8 @@ namespace HotelReservationProblem
                 hotelName2 = HotelName.BRIDGEWOOD;
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1 + "\t" + hotelName2);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel+"\t"+bridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood + "\t" + rateOfBridgeWood);
-                j++;
+                Console.WriteLine("Total cost for the given date range: $" + rateOfRidgeWood + "\t$" + rateOfBridgeWood);
+                i+=2;
             }
             if(rateOfLakeWood==rateOfBridgeWood && rateOfLakeWood==rateOfRidgeWood)
             {
@@ -105,10 +105,10 @@ namespace HotelReservationProblem
                 hotelName3 = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName1 + "\t" + hotelName2+"\t"+hotelName3);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel+"\t"+bridgeWood.ratingOfHotel+"\t"+ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood + "\t" + rateOfBridgeWood+"\t"+rateOfRidgeWood);
-                k++;
+                Console.WriteLine("Total cost for the given date range: $" + rateOfLakeWood + "\t$" + rateOfBridgeWood+"\t$"+rateOfRidgeWood);
+                i+=3;
             }
-            return hotelName;
+            return i;
         }
         public HotelName BestRatedHotel(string checkInDate, string checkOutDate, CustomerType customerType)
         {
@@ -129,21 +129,21 @@ namespace HotelReservationProblem
                 hotelName = HotelName.LAKEWOOD;
                 Console.WriteLine("Best rated hotel is: "+hotelName);
                 Console.WriteLine("Rating of the hotel: "+ lakeWood.ratingOfHotel);
-                Console.WriteLine("Total Cost: "+rateOfLakeWood);
+                Console.WriteLine("Total Cost: $"+rateOfLakeWood);
             }
             if (bridgeWood.ratingOfHotel > lakeWood.ratingOfHotel && bridgeWood.ratingOfHotel > ridgeWood.ratingOfHotel)
             {
                 hotelName = HotelName.BRIDGEWOOD;
                 Console.WriteLine("Best rated hotel is: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + bridgeWood.ratingOfHotel);
-                Console.WriteLine("Total Cost: " + rateOfBridgeWood);
+                Console.WriteLine("Total Cost: $" + rateOfBridgeWood);
             }
             if (ridgeWood.ratingOfHotel > bridgeWood.ratingOfHotel && ridgeWood.ratingOfHotel > bridgeWood.ratingOfHotel)
             {
                 hotelName = HotelName.RIDGEWOOD;
                 Console.WriteLine("Best rated hotel is: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total Cost: " + rateOfRidgeWood);
+                Console.WriteLine("Total Cost: $" + rateOfRidgeWood);
             }
             return hotelName;
         }
@@ -168,49 +168,49 @@ namespace HotelReservationProblem
                 hotelName = HotelName.LAKEWOOD;
                 Console.WriteLine("Cheapest Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + lakeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfLakeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfLakeWood);
             }
             if (rateOfBridgeWood < rateOfLakeWood && rateOfBridgeWood < rateOfRidgeWood)
             {
                 hotelName = HotelName.BRIDGEWOOD;
                 Console.WriteLine("Cheapest Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + bridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfBridgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfBridgeWood);
             }
             if (rateOfRidgeWood < rateOfLakeWood && rateOfRidgeWood < rateOfBridgeWood)
             {
                 hotelName = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfRidgeWood);
             }
             if (rateOfLakeWood == rateOfBridgeWood && rateOfLakeWood < rateOfRidgeWood)
             {
                 hotelName = HotelName.BRIDGEWOOD;
                 Console.WriteLine("Cheapest and Best Rated Hotel for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + bridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfBridgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfBridgeWood);
             }
             if (rateOfLakeWood == rateOfRidgeWood && rateOfLakeWood < rateOfBridgeWood)
             {
                 hotelName = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfRidgeWood);
             }
             if (rateOfBridgeWood == rateOfRidgeWood && rateOfBridgeWood < rateOfLakeWood)
             {
                 hotelName = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfRidgeWood);
             }
             if (rateOfLakeWood == rateOfBridgeWood && rateOfLakeWood == rateOfRidgeWood)
             {
                 hotelName = HotelName.RIDGEWOOD;
                 Console.WriteLine("Cheapest Hotels for the entered date range: " + hotelName);
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
-                Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
+                Console.WriteLine("Total cost for the given date range: $" + rateOfRidgeWood);
             }
             return hotelName;
         }

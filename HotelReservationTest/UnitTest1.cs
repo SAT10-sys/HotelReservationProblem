@@ -10,38 +10,38 @@ namespace HotelReservationTest
         [TestMethod]
         public void OnEnteringOneWeekDayAndOneWeekendForRegularCustomerShouldReturnCheapestHotel()
         {
-            HotelName hotelName = hotelOperations.FindCheapestHotel("06/12/2020", "07/12/2020", CustomerType.REGULAR);
-            Assert.AreEqual(hotelName, HotelName.LAKEWOOD);
-        }
+            int numberOfHotels = hotelOperations.FindCheapestHotel("06/12/2020", "07/12/2020", CustomerType.REGULAR);
+            Assert.AreEqual(numberOfHotels, 2);
+        }        
         [TestMethod]
         public void OnEnteringOneWeekDayAndOneWeekendForRewardCustomerShouldReturnCheapestHotel()
         {
-            HotelName hotelName = hotelOperations.FindCheapestHotel("06/12/2020", "07/12/2020", CustomerType.REWARD);
-            Assert.AreEqual(hotelName, HotelName.RIDGEWOOD);
+            int numberOfHotels = hotelOperations.FindCheapestHotel("06/12/2020", "07/12/2020", CustomerType.REWARD);
+            Assert.AreEqual(numberOfHotels,1);
         }
         [TestMethod]
         public void OnEnteringTwoWeekDaysForRegularCustomersShouldReturnCheapestHotel()
         {
-            HotelName hotelName = hotelOperations.FindCheapestHotel("02/12/2020", "03/12/2020", CustomerType.REGULAR);
-            Assert.AreEqual(hotelName, HotelName.LAKEWOOD);
+            int numberOfHotels = hotelOperations.FindCheapestHotel("02/12/2020", "03/12/2020", CustomerType.REGULAR);
+            Assert.AreEqual(numberOfHotels,1);
         }
         [TestMethod]
         public void OnEnteringTwoWeekDaysForRewardCustomersShouldReturnCheapestHotel()
         {
-            HotelName hotelName = hotelOperations.FindCheapestHotel("02/12/2020", "03/12/2020", CustomerType.REWARD);
-            Assert.AreEqual(hotelName, HotelName.LAKEWOOD);
+            int numberOfHotels = hotelOperations.FindCheapestHotel("02/12/2020", "03/12/2020", CustomerType.REWARD);
+            Assert.AreEqual(numberOfHotels,1);
         }
         [TestMethod]
         public void OnEnteringTwoWeekEndDaysForRegularCustomersShouldReturnCheapestHotel()
         {
-            HotelName hotelName = hotelOperations.FindCheapestHotel("05/12/2020", "06/12/2020", CustomerType.REGULAR);
-            Assert.AreEqual(hotelName, HotelName.BRIDGEWOOD);
+            int numberOfHotels = hotelOperations.FindCheapestHotel("05/12/2020", "06/12/2020", CustomerType.REGULAR);
+            Assert.AreEqual(numberOfHotels,1);
         }
         [TestMethod]
         public void OnEnteringTwoWeekEndDaysForRewardCustomersShouldReturnCheapestHotel()
         {
-            HotelName hotelName = hotelOperations.FindCheapestHotel("05/12/2020", "06/12/2020", CustomerType.REWARD);
-            Assert.AreEqual(hotelName, HotelName.RIDGEWOOD);
+            int numberOfHotels = hotelOperations.FindCheapestHotel("05/12/2020", "06/12/2020", CustomerType.REWARD);
+            Assert.AreEqual(numberOfHotels, 1);
         }
         [TestMethod]
         public void OnEnteringDateRangeAndRegularCustomerShouldReturnBestRatedHotel()
@@ -53,6 +53,42 @@ namespace HotelReservationTest
         public void OnEnteringDateRangeAndRewardCustomerShouldReturnBestRatedHotel()
         {
             HotelName hotelName = hotelOperations.BestRatedHotel("30/11/2020", "01/12/2020", CustomerType.REWARD);
+            Assert.AreEqual(hotelName, HotelName.RIDGEWOOD);
+        }
+        [TestMethod]
+        public void OnEnteringOneWeekDayAndOneWeekEndDayForRegularCustomerShouldReturnBestRatedCheapestHotel()
+        {
+            HotelName hotelName = hotelOperations.BestRatedCheapestHotel("06/12/2020", "07/12/2020", CustomerType.REGULAR);
+            Assert.AreEqual(hotelName, HotelName.BRIDGEWOOD);
+        }
+        [TestMethod]
+        public void OnEnteringOneWeekDayAndOneWeekEndDayForRewardCustomerShouldReturnBestRatedCheapestHotel()
+        {
+            HotelName hotelName = hotelOperations.BestRatedCheapestHotel("06/12/2020", "07/12/2020", CustomerType.REWARD);
+            Assert.AreEqual(hotelName, HotelName.RIDGEWOOD);
+        }
+        [TestMethod]
+        public void OnEnteringTwoWeekDaysForRegularCustomersShouldReturnBestRatedCheapestHotels()
+        {
+            HotelName hotelName = hotelOperations.BestRatedCheapestHotel("07/12/2020", "08/12/2020", CustomerType.REGULAR);
+            Assert.AreEqual(hotelName, HotelName.LAKEWOOD);
+        }
+        [TestMethod]
+        public void OnEnteringTwoWeekDaysForRewardCustomersShouldReturnBestRatedCheapestHotels()
+        {
+            HotelName hotelName = hotelOperations.BestRatedCheapestHotel("07/12/2020", "08/12/2020", CustomerType.REWARD);
+            Assert.AreEqual(hotelName, HotelName.LAKEWOOD);
+        }
+        [TestMethod]
+        public void OnEnteringTwoWeekEndDaysForRegularCustomersShouldReturnBestRatedCheapestHotels()
+        {
+            HotelName hotelName = hotelOperations.BestRatedCheapestHotel("05/12/2020", "06/12/2020", CustomerType.REGULAR);
+            Assert.AreEqual(hotelName, HotelName.BRIDGEWOOD);
+        }
+        [TestMethod]
+        public void OnEnteringTwoWeekEndDaysForRewardCustomersShouldReturnBestRatedCheapestHotels()
+        {
+            HotelName hotelName = hotelOperations.BestRatedCheapestHotel("05/12/2020", "06/12/2020", CustomerType.REWARD);
             Assert.AreEqual(hotelName, HotelName.RIDGEWOOD);
         }
         [TestMethod]
