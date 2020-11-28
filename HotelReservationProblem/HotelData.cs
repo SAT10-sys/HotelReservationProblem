@@ -5,13 +5,18 @@ using System.Globalization;
 
 namespace HotelReservationProblem
 {
+    public enum CustomerType
+    {
+        REGULAR,
+        REWARD
+    }
     public class HotelData
     {
         HotelName nameOfHotel; //name of Hotel 
         public double weekDayRateOfHotel; // weekday rate of hotel
         public double weekEndRateOfHotel; // weekend rate of hotel
         public int ratingOfHotel; // rating of hotels
-        public HotelData(HotelName nameOfHotel)
+        public HotelData(HotelName nameOfHotel, CustomerType customerType)
         {
             /* parameterized constructor
              * try-catch block checks for exception thrown by invalid hotel name
@@ -19,23 +24,54 @@ namespace HotelReservationProblem
             this.nameOfHotel = nameOfHotel;
             try
             {
+                /* checking name of hotels
+                 * inner try-catch block to handle exceptions for invalid customer type
+                 * assigning weekday and weekend rates based on customer type
+                 */
                 if (nameOfHotel.Equals(HotelName.LAKEWOOD))
                 {
-                    this.weekDayRateOfHotel = 110;
-                    this.weekEndRateOfHotel = 90;
                     this.ratingOfHotel = 3;
+                    try
+                    {
+                        if(customerType.Equals(CustomerType.REGULAR))
+                        { this.weekDayRateOfHotel = 110; this.weekEndRateOfHotel = 90; }
+                        if (customerType.Equals(CustomerType.REWARD))
+                        { this.weekDayRateOfHotel = 80; this.weekEndRateOfHotel = 80; }
+                    }
+                    catch(HotelReservationException)
+                    {
+                        throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_CUSTOMER_TYPE, "Invalid Customer Type");
+                    }
                 }
                 if (nameOfHotel.Equals(HotelName.BRIDGEWOOD))
                 {
-                    this.weekDayRateOfHotel = 150;
-                    this.weekEndRateOfHotel = 50;
                     this.ratingOfHotel = 4;
+                    try
+                    {
+                        if (customerType.Equals(CustomerType.REGULAR))
+                        { this.weekDayRateOfHotel = 150; this.weekEndRateOfHotel = 50; }
+                        if (customerType.Equals(CustomerType.REWARD))
+                        { this.weekDayRateOfHotel = 110; this.weekEndRateOfHotel = 50; }
+                    }
+                    catch (HotelReservationException)
+                    {
+                        throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_CUSTOMER_TYPE, "Invalid Customer Type");
+                    }
                 }
                 if (nameOfHotel.Equals(HotelName.RIDGEWOOD))
                 {
-                    this.weekDayRateOfHotel = 220;
-                    this.weekEndRateOfHotel = 150;
                     this.ratingOfHotel = 5;
+                    try
+                    {
+                        if (customerType.Equals(CustomerType.REGULAR))
+                        { this.weekDayRateOfHotel = 220; this.weekEndRateOfHotel = 150; }
+                        if (customerType.Equals(CustomerType.REWARD))
+                        { this.weekDayRateOfHotel = 100; this.weekEndRateOfHotel = 40; }
+                    }
+                    catch (HotelReservationException)
+                    {
+                        throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_CUSTOMER_TYPE, "Invalid Customer Type");
+                    }
                 }
             }
             catch(HotelReservationException)

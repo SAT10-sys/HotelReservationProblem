@@ -12,7 +12,7 @@ namespace HotelReservationProblem
              * checkin and checkout dates are passed as parameters
              * objects of enum HotelName are created which are passed as parameters to the method finding hotel cost
              * finally they are compared
-             */
+             
             HotelName hotelName1;
             HotelName hotelName2;
             HotelName hotelName3;
@@ -152,6 +152,7 @@ namespace HotelReservationProblem
                 Console.WriteLine("Rating of the hotel: " + ridgeWood.ratingOfHotel);
                 Console.WriteLine("Total cost for the given date range: " + rateOfRidgeWood);
             }
+        }*/
         }
     }
 }
