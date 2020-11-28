@@ -10,6 +10,7 @@ namespace HotelReservationProblem
         HotelName nameOfHotel; //name of Hotel 
         public double weekDayRateOfHotel; // weekday rate of hotel
         public double weekEndRateOfHotel; // weekend rate of hotel
+        public int ratingOfHotel; // rating of hotels
         public HotelData(HotelName nameOfHotel)
         {
             /* parameterized constructor
@@ -22,16 +23,19 @@ namespace HotelReservationProblem
                 {
                     this.weekDayRateOfHotel = 110;
                     this.weekEndRateOfHotel = 90;
+                    this.ratingOfHotel = 3;
                 }
                 if (nameOfHotel.Equals(HotelName.BRIDGEWOOD))
                 {
                     this.weekDayRateOfHotel = 150;
                     this.weekEndRateOfHotel = 50;
+                    this.ratingOfHotel = 4;
                 }
                 if (nameOfHotel.Equals(HotelName.RIDGEWOOD))
                 {
                     this.weekDayRateOfHotel = 220;
                     this.weekEndRateOfHotel = 150;
+                    this.ratingOfHotel = 5;
                 }
             }
             catch(HotelReservationException)
@@ -49,7 +53,7 @@ namespace HotelReservationProblem
              */
             double totalcostOfHotel;
             double totalWeekDayCost = 0; //total cost for weekdays only
-            double totalweekEndCost = 0; // total cost for weekends only
+            double totalweekEndCost = 0; // total cost for weekends only      
             try
             {
                 CultureInfo cultureInfo = CultureInfo.InvariantCulture;
